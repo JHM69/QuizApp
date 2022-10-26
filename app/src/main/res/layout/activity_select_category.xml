@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="66dp"
         android:text="Select your interests"
+        android:textColor="@color/colorAccent"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="66dp"
         android:text="Select Difficulty"
+        android:textColor="@color/colorAccent"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chips_categories" />
@@ -41,85 +45,157 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/arts_and_literature"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:fontFamily="@font/regular"
             android:text="Arts &amp; Literature"
-            app:chipIcon="@drawable/ic_outline_waves_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_outline_waves_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/film_and_tv"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:fontFamily="@font/regular"
             android:text="Film &amp; TV"
-            app:chipIcon="@drawable/ic_outline_live_tv_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_outline_live_tv_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/food_and_drink"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:fontFamily="@font/regular"
             android:text="Food &amp; Drink"
-            app:chipIcon="@drawable/ic_outline_fastfood_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_outline_fastfood_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/general_knowledge"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:fontFamily="@font/regular"
             android:text="General Knowledge"
-            app:chipIcon="@drawable/ic_outline_format_quote_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_outline_format_quote_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
 
         <com.google.android.material.chip.Chip
             android:id="@+id/geography"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:fontFamily="@font/regular"
             android:text="Geography"
-            app:chipIcon="@drawable/ic_outline_map_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_outline_map_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/history"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:fontFamily="@font/regular"
             android:text="History"
-            app:chipIcon="@drawable/ic_baseline_history_toggle_off_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_baseline_history_toggle_off_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
 
         <com.google.android.material.chip.Chip
             android:id="@+id/science"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:checked="true"
+            android:fontFamily="@font/regular"
             android:text="Science"
-            app:chipIcon="@drawable/ic_outline_science_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:checkedIconVisible="false"
+            app:chipIcon="@drawable/ic_outline_science_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/music"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:fontFamily="@font/regular"
             android:text="Music"
-            app:chipIcon="@drawable/ic_outline_music_note_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_outline_music_note_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/society_and_culture"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:fontFamily="@font/regular"
             android:text="Society &amp; Culture"
-            app:chipIcon="@drawable/ic_outline_nature_people_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_outline_nature_people_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/sport_and_leisure"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
+            android:fontFamily="@font/regular"
             android:text="Sport &amp; Leisure"
-            app:chipIcon="@drawable/ic_baseline_sports_cricket_24" />
+            android:textStyle="bold"
+            app:checkedIconEnabled="false"
+            app:checkedIconTint="@color/colorPrimaryDark"
+            app:chipIcon="@drawable/ic_baseline_sports_cricket_24"
+            app:chipIconEnabled="true"
+            app:chipIconVisible="true" />
 
     </com.google.android.material.chip.ChipGroup>
 
@@ -147,8 +223,8 @@
             style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium"
-     />
+            android:checked="true"
+            android:text="Medium" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/hard"
@@ -163,10 +239,14 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:text="Start"
+        android:textSize="20sp"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chips_difficulty" />

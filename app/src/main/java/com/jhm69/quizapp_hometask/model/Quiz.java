@@ -1,11 +1,12 @@
 package com.jhm69.quizapp_hometask.model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverters;
+
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import com.jhm69.quizapp_hometask.utils.BooleanLiatConverter;
 import com.jhm69.quizapp_hometask.utils.DataTypeConverterQuestion;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("NotNullFieldNotInitialized")
+
 @Entity
 public class Quiz implements Serializable {
 

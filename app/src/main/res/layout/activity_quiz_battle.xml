@@ -25,10 +25,12 @@
                 android:id="@+id/step_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myScore"
                 app:sv_animationDuration="1000"
@@ -41,9 +43,10 @@
                 app:sv_nextStepCircleEnabled="true"
                 app:sv_nextStepLineColor="#6DA9A9A9"
                 app:sv_nextTextColor="@color/white"
-                app:sv_selectedCircleColor="?colorPrimaryDark"
+                app:sv_selectedCircleColor="@color/colorPrimary"
                 app:sv_selectedStepNumberColor="@color/white"
                 app:sv_stepLineWidth="3dp"
+                app:sv_stepNumberTextSize="13sp"
                 app:sv_typeface="@font/regular"
                 tools:ignore="MissingConstraints" />
 
@@ -52,10 +55,11 @@
                 android:id="@+id/linearLayout2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/contaner"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/step_view">
 
@@ -80,7 +84,9 @@
                         android:layout_margin="8dp"
                         android:fontFamily="@font/regular"
                         android:lineSpacingExtra="4dp"
-                        android:padding="3dp" />
+                        android:padding="3dp"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -89,7 +95,7 @@
             <LinearLayout
                 android:id="@+id/contaner"
                 android:layout_width="0dp"
-                android:layout_height="210dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:gravity="center_vertical"
@@ -105,22 +111,22 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded"
-                    android:gravity="center"
-                    android:paddingStart="30dp"
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:paddingStart="20dp"
                     tools:ignore="RtlSymmetry">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="7dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
                         android:fontFamily="@font/regular"
                         android:forceHasOverlappingRendering="true"
-                        android:lineSpacingExtra="4dp"
                         android:textColor="?android:textColorPrimary"
-                        tools:ignore="ObsoleteLayoutParam"
-                        tools:targetApi="n" />
+                        android:textSize="16sp"
+                        tools:ignore="ObsoleteLayoutParam" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -129,22 +135,22 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded"
-                    android:gravity="center"
-                    android:paddingStart="30dp"
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:paddingStart="20dp"
                     tools:ignore="RtlSymmetry">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="7dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
                         android:fontFamily="@font/regular"
                         android:forceHasOverlappingRendering="true"
-                        android:lineSpacingExtra="4dp"
                         android:textColor="?android:textColorPrimary"
-                        tools:ignore="ObsoleteLayoutParam"
-                        tools:targetApi="n" />
+                        android:textSize="16sp"
+                        tools:ignore="ObsoleteLayoutParam" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -153,22 +159,22 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded"
-                    android:gravity="center"
-                    android:paddingStart="30dp"
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:paddingStart="20dp"
                     tools:ignore="RtlSymmetry">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="7dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
                         android:fontFamily="@font/regular"
                         android:forceHasOverlappingRendering="true"
-                        android:lineSpacingExtra="4dp"
                         android:textColor="?android:textColorPrimary"
-                        tools:ignore="ObsoleteLayoutParam"
-                        tools:targetApi="n" />
+                        android:textSize="16sp"
+                        tools:ignore="ObsoleteLayoutParam" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -177,22 +183,22 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded"
-                    android:gravity="center"
-                    android:paddingStart="30dp"
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:paddingStart="20dp"
                     tools:ignore="RtlSymmetry">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:layout_margin="7dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
                         android:fontFamily="@font/regular"
                         android:forceHasOverlappingRendering="true"
-                        android:lineSpacingExtra="4dp"
                         android:textColor="?android:textColorPrimary"
-                        tools:ignore="ObsoleteLayoutParam"
-                        tools:targetApi="n" />
+                        android:textSize="16sp"
+                        tools:ignore="ObsoleteLayoutParam" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -200,7 +206,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/next"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="6dp"
@@ -209,7 +215,9 @@
                 android:enabled="false"
                 android:soundEffectsEnabled="true"
                 android:text="Next"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
                 app:icon="@drawable/ic_baseline_navigate_next_24"
                 app:iconGravity="textStart"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -224,7 +232,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="27dp"
-                android:text="Science"
+                android:textColor="?android:textColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -235,6 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="15"
+                android:textColor="@color/colorAccent"
                 android:textSize="54sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -244,4 +253,18 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/textViewCountDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nestedScrollView"
+        app:drawableLeftCompat="@drawable/ic_round_timer_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,1 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><resources>    <color name="colorPrimary">#76A6EF</color>    <color name="colorPrimaryDark">#76A6EF</color>    <color name="colorAccent">#76A6EF</color>    <color name="colorAccentt">#76A6EF</color>    <color name="textColorPrimary">#ffffff</color>    <color name="white">#FFFFFF</color>    <color name="dim_proo">#CDFFFFFF</color>    <color name="selectted">#418F8F8F</color>    <color name="red">#FFFFFF</color>    <color name="list_even">#FFF5F5</color>    <color name="list_odd">#F3FFFF</color>    <color name="list_selected">#91B1E7</color>    <color name="calendar_bg">#ffffff</color>    <color name="calendar_divider">#f5f5f5</color>    <color name="calendar_selected_range_bg">#76A6EF</color>    <color name="calendar_unavailable_bg">#ef5350</color>    <color name="calendar_range_middle_unavailable_bg">#ef5350</color>    <color name="calendar_range_middle_deactivated_bg">#80000000</color>    <color name="calendar_text_active">#212121</color>    <color name="dateTimeRangePickerStateDefault">@android:color/black</color>    <color name="dateTimeRangePickerStateNonSelectable">@android:color/white</color>    <color name="dateTimeRangePickerStateToday">#91B1E7</color>    <color name="dateTimeRangePickerHeaderTextColor">@android:color/black</color>    <color name="dateTimeRangePickerTitleTextColor">@android:color/black</color>    <color name="dateTimeRangePickerRangeTextColorInactive">#B9B9B9</color>    <!-- colors for tab and screent text -->    <color name="tab_indicator_gray">#c0c0c0</color>    <color name="stepview_line_done">@android:color/white</color>    <color name="stepview_line_next">#26ffffff</color>    <color name="stepview_text_next">#40ffffff</color>    <color name="stepview_text_done">#40ffffff</color>    <color name="stepview_text_selected">@android:color/white</color>    <color name="stepview_circle_done">@android:color/white</color>    <color name="stepview_circle_selected">@android:color/white</color>    <color name="stepview_selected_number">#7e57c2</color>    <color name="stepview_mark">@color/stepview_selected_number</color>    <color name="green">#188F1D</color></resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4643D2</color>
+    <color name="colorPrimaryDark">#4643D2</color>
+    <color name="colorAccent">#4643D2</color>
+    <color name="colorAccentt">#4643D2</color>
+    <color name="textColorPrimary">#ffffff</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dim_proo">#CDFFFFFF</color>
+    <color name="selectted">#418F8F8F</color>
+    <color name="red">#B11C1C</color>
+
+    <color name="list_even">#FFF5F5</color>
+    <color name="list_odd">#F3FFFF</color>
+    <color name="list_selected">#9492E6</color>
+
+    <color name="calendar_bg">#ffffff</color>
+    <color name="calendar_divider">#f5f5f5</color>
+    <color name="calendar_selected_range_bg">#4643D2</color>
+    <color name="calendar_unavailable_bg">#ef5350</color>
+    <color name="calendar_range_middle_unavailable_bg">#ef5350</color>
+    <color name="calendar_range_middle_deactivated_bg">#80000000</color>
+    <color name="calendar_text_active">#212121</color>
+    <color name="dateTimeRangePickerStateDefault">@android:color/black</color>
+    <color name="dateTimeRangePickerStateNonSelectable">@android:color/white</color>
+    <color name="dateTimeRangePickerStateToday">#ADACF1</color>
+    <color name="dateTimeRangePickerHeaderTextColor">@android:color/black</color>
+    <color name="dateTimeRangePickerTitleTextColor">@android:color/black</color>
+    <color name="dateTimeRangePickerRangeTextColorInactive">#B9B9B9</color>
+
+    <!-- colors for tab and screent text -->
+    <color name="tab_indicator_gray">#c0c0c0</color>
+    <color name="stepview_line_done">@android:color/white</color>
+    <color name="stepview_line_next">#26ffffff</color>
+    <color name="stepview_text_next">#40ffffff</color>
+    <color name="stepview_text_done">#40ffffff</color>
+    <color name="stepview_text_selected">@android:color/white</color>
+    <color name="stepview_circle_done">@android:color/white</color>
+    <color name="stepview_circle_selected">@android:color/white</color>
+    <color name="stepview_selected_number">#7e57c2</color>
+    <color name="stepview_mark">@color/stepview_selected_number</color>
+    <color name="green">#21AA27</color>
+</resources>

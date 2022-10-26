@@ -35,11 +35,10 @@ private String difficulty;
 @SerializedName("regions")
 @Expose
 private List<String> regions = new ArrayList<>();
-
-
 private List<String> options = new ArrayList<>();
-public Question() {
-        List<String> options = incorrectAnswers;
+
+public void setUpOptions() {
+        options = incorrectAnswers;
         options.add(correctAnswer);
         Collections.shuffle(options);
 }

@@ -447,7 +447,6 @@ public class StepView extends View {
     }
 
     @SuppressLint("WrongConstant")
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private boolean isRtl() {
         return ViewCompat.getLayoutDirection(this) == View.LAYOUT_DIRECTION_RTL;
     }
@@ -750,13 +749,13 @@ public class StepView extends View {
 
     private void drawCheckMark(Canvas canvas, int circleCenterX, int circleCenterY) {
         paint.setColor(doneStepMarkColor);
-        float width = stepNumberTextSize * 0.1f;
+        float width = stepNumberTextSize * 0.115f;
         paint.setStrokeWidth(width);
         Rect bounds = new Rect(
-                (int) (circleCenterX - width * 4.5),
-                (int) (circleCenterY - width * 3.5),
-                (int) (circleCenterX + width * 4.5),
-                (int) (circleCenterY + width * 3.5));
+                (int) (circleCenterX - width * 5),
+                (int) (circleCenterY - width * 3.9),
+                (int) (circleCenterX + width * 5),
+                (int) (circleCenterY + width * 3.9));
         canvas.drawLine(
                 bounds.left + 0.5f * width,
                 bounds.bottom - 3.25f * width,
@@ -771,13 +770,13 @@ public class StepView extends View {
 
     private void drawUnCheckMark(Canvas canvas, int circleCenterX, int circleCenterY) {
         paint.setColor(doneStepMarkColor);
-        float width = stepNumberTextSize * 0.1f;
+        float width = stepNumberTextSize * 0.115f;
         paint.setStrokeWidth(width);
         Rect bounds = new Rect(
-                (int) (circleCenterX - width * 0.5),
-                (int) (circleCenterY - width * 3.5),
-                (int) (circleCenterX + width * 0.5),
-                (int) (circleCenterY + width * 5.5));
+                (int) (circleCenterX - width * 0.4),
+                (int) (circleCenterY - width * 4.3),
+                (int) (circleCenterX + width * 0.4),
+                (int) (circleCenterY + width * 4.3));
 
         canvas.drawLine(
                 bounds.right + 2.75f * width,
@@ -786,11 +785,12 @@ public class StepView extends View {
                 bounds.bottom + 0.75f * width
                 , paint);
         canvas.drawLine(
-                bounds.left + 2.75f * width,
-                bounds.bottom - 0.75f * width,
-                bounds.right - 3.375f * width,
-                bounds.top + 0.75f * width
+                bounds.left + 4.75f * width,
+                bounds.bottom - 0.0f * width,
+                bounds.right - 4.75f * width,
+                bounds.top + 0.0f * width
                 , paint);
+
     }
 
     private void drawLine(Canvas canvas, int startX, int endX, int centerY, boolean highlight) {
