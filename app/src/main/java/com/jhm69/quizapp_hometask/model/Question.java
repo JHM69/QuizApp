@@ -1,5 +1,7 @@
 package com.jhm69.quizapp_hometask.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -17,7 +19,7 @@ private String id;
 private String correctAnswer;
 @SerializedName("incorrectAnswers")
 @Expose
-private List<String> incorrectAnswers = null;
+private List<String> incorrectAnswers = new ArrayList<>();
 @SerializedName("question")
 @Expose
 private String question;
@@ -32,12 +34,20 @@ private String type;
 private String difficulty;
 @SerializedName("regions")
 @Expose
-private List<Object> regions = null;
+private List<String> regions = new ArrayList<>();
+
+
+private List<String> options = new ArrayList<>();
+public Question() {
+        List<String> options = incorrectAnswers;
+        options.add(correctAnswer);
+        Collections.shuffle(options);
+}
+
 
 public String getCategory() {
 return category;
 }
-
 public void setCategory(String category) {
 this.category = category;
 }
@@ -52,6 +62,10 @@ this.id = id;
 
 public String getCorrectAnswer() {
 return correctAnswer;
+}
+
+public int getCorrectAnswerIndex() {
+    return options.indexOf(correctAnswer);
 }
 
 public void setCorrectAnswer(String correctAnswer) {
@@ -98,12 +112,15 @@ public void setDifficulty(String difficulty) {
 this.difficulty = difficulty;
 }
 
-public List<Object> getRegions() {
+public List<String> getRegions() {
 return regions;
 }
 
-public void setRegions(List<Object> regions) {
+public void setRegions(List<String> regions) {
 this.regions = regions;
+}
+public  List<String> getOptions(){
+    return options;
 }
 
 }
