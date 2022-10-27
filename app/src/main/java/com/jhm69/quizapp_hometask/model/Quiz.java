@@ -31,8 +31,8 @@ public class Quiz implements Serializable {
     @NonNull
     String battleId;
 
-    int score;
-    int completed;
+    public int score=0;
+    public int completed=0;
 
     @Ignore
     public Quiz() {
@@ -112,5 +112,9 @@ public class Quiz implements Serializable {
 
     public void setCompleted(int completed) {
         this.completed = completed;
+    }
+
+    public boolean isCompleted() {
+        return completed==questionList.size();
     }
 }

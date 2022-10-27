@@ -1,6 +1,7 @@
 package com.jhm69.quizapp_hometask.activity;
 
 
+import static android.content.res.ColorStateList.*;
 import static com.jhm69.quizapp_hometask.view.StepView.stepAnsList;
 
 import android.animation.Animator;
@@ -61,7 +62,6 @@ public class QuizBattle extends AppCompatActivity {
     public ArrayList<Boolean> answers;
     public int position;
     boolean destroy = false;
-    String topic, difficulty;
     int question_number;
     String offlideID;
     final String battleId = Long.toHexString(Double.doubleToLongBits(Math.random()));
@@ -136,10 +136,8 @@ public class QuizBattle extends AppCompatActivity {
         }
         setContentView(R.layout.activity_quiz_battle);
         stepAnsList = new ArrayList<>();
-        offlideID = getIntent().getStringExtra("offline");
-        topic = getIntent().getStringExtra("topic");
-        difficulty = getIntent().getStringExtra("difficulty");
-        question_number = getIntent().getIntExtra("question_number", 5);
+        offlideID = getIntent().getStringExtra("id");
+        question_number = 5 ;
         topicTV = findViewById(R.id.topic);
         thisScore = findViewById(R.id.myScore);
         answers = new ArrayList<>();
@@ -170,19 +168,6 @@ public class QuizBattle extends AppCompatActivity {
                 Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
             }
         }
-      /*  expBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isPanelShown(expCard)) {
-                    hideSolution(expCard, getApplicationContext());
-                    expBtn.setText("Hint");
-                } else {
-                    expTV.setDisplayText(list.get(position).getHint());
-                    playSolution(expCard, getApplicationContext());
-                    expBtn.setText("Hide");
-                }
-            }
-        });*/
         for (int i = 0; i < 4; i++) {
             final int selected = i;
             optionsContainer.getChildAt(i).setOnClickListener(v -> {
@@ -191,13 +176,14 @@ public class QuizBattle extends AppCompatActivity {
                 next.setEnabled(true);
                 if (selected == list.get(position).getCorrectAnswerIndex()) {
                     score += 5;
+                    quiz.score+=5;
                     thisScore.setText(String.valueOf(score));
                     Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
                     selectedLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4BBB4F")));
                     stepAnsList.add(position, true);
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong", Toast.LENGTH_SHORT).show();
-                    selectedLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#D32F2F")));
+                    selectedLayout.setBackgroundTintList(valueOf(Color.parseColor("#D32F2F")));
                     LinearLayout CorrectLayout = (LinearLayout) optionsContainer.getChildAt(list.get(position).getCorrectAnswerIndex());
                     CorrectLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4BBB4F")));
                     stepAnsList.add(position, false);
@@ -205,7 +191,7 @@ public class QuizBattle extends AppCompatActivity {
                 AsyncTask.execute(() -> {
                     answers.add(position, true);
                     quiz.setAnswers(answers);
-                    quiz.setCompleted(position + 1);
+                    quiz.completed++;
                     quiz.setTimestamp(System.currentTimeMillis());
                     battleViewModel.insert(quiz);
                 });
@@ -281,12 +267,14 @@ public class QuizBattle extends AppCompatActivity {
             public void onFinish() {
                 timeLeftInMillis = 0;
                 countDownTimer.cancel();
-                //updateCountDownText();
+                updateCountDownText();
                 next.setEnabled(true);
                 elableOption(false);
                 LinearLayout CorrectLayout;
                 CorrectLayout = (LinearLayout) optionsContainer.getChildAt(list.get(position).getCorrectAnswerIndex());
-                CorrectLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4BBB4F")));
+                CorrectLayout.setBackgroundColor(Color.parseColor("#4BBB4F"));
+                TextView d = (TextView) (CorrectLayout.getChildAt(0));
+                d.setTextColor(Color.parseColor("#ffffff"));
                 stepAnsList.add(position, false);
                 showResult();
             }
@@ -309,26 +297,27 @@ public class QuizBattle extends AppCompatActivity {
     @SuppressLint("ResourceAsColor")
     private void changeColor() {
         LinearLayout op1 = (LinearLayout) optionsContainer.getChildAt(0);
-        op1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#575757")));
+        op1.setBackgroundTintList(valueOf(Color.parseColor("#575757")));
 
         LinearLayout op2 = (LinearLayout) optionsContainer.getChildAt(1);
-        op2.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#575757")));
+        op2.setBackgroundTintList(valueOf(Color.parseColor("#575757")));
 
         LinearLayout op3 = (LinearLayout) optionsContainer.getChildAt(2);
-        op3.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#575757")));
+        op3.setBackgroundTintList(valueOf(Color.parseColor("#575757")));
 
         LinearLayout op4 = (LinearLayout) optionsContainer.getChildAt(3);
-        op4.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#575757")));
+        op4.setBackgroundTintList(valueOf(Color.parseColor("#575757")));
 
     }
 
-    private void elableOption(boolean enable) {
+    private void elableOption(boolean enable)
+    {
         for (int i = 0; i < 4; i++) {
             LinearLayout linearLayout = (LinearLayout) optionsContainer.getChildAt(i);
             linearLayout.setEnabled(enable);
             if (enable) {
                 LinearLayout layout = (LinearLayout) optionsContainer.getChildAt(i);
-                layout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#575757")));
+                layout.setBackgroundTintList(valueOf(Color.parseColor("#575757")));
             }
         }
     }
@@ -340,44 +329,47 @@ public class QuizBattle extends AppCompatActivity {
             if (offlideID != null) {
                 try {
                     Toast.makeText(this, "Resuming battle...", Toast.LENGTH_SHORT).show();
-                    quiz = battleViewModel.getBattle(offlideID);
-                    mDialog.hide();
-                    topic = quiz.getTopic();
-                    if (quiz.getCompleted() < 5) {
-                        position = quiz.getCompleted() - 1;
-                        score = getScoreCount(quiz.getAnswers());
-                        thisScore.setText(String.valueOf(score));
-                        list = Objects.requireNonNull(quiz).getQuestionList();
-                        for(int i=0; i<list.size(); i++){
-                            list.get(i).setUpOptions();
+
+                    battleViewModel.getBattle(offlideID).observe(this, quiz -> {
+                        this.quiz = quiz;
+                        mDialog.hide();
+                        if (!quiz.isCompleted()) {
+                            position = quiz.getCompleted() - 1;
+                            score = getScoreCount(quiz.getAnswers());
+                            thisScore.setText(String.valueOf(score));
+                            list = Objects.requireNonNull(quiz).getQuestionList();
+                            for(int i=0; i<list.size(); i++){
+                                list.get(i).setUpOptions();
+                            }
+                            question_number = Objects.requireNonNull(quiz).getQuestionList().size();
+                            try {
+                                playAnim(question, 60, list.get(position).getQuestion());
+                            } catch (Exception vhjkj) {
+                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                            try {
+                                stepView.getState()
+                                        .animationType(StepView.ANIMATION_ALL)
+                                        .nextStepCircleEnabled(true)
+                                        .stepsNumber(list.size())
+                                        .commit();
+                            } catch (Exception xcz) {
+                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                            answers = quiz.getAnswers();
+                            for (int i = 0; i < question_number; i++) {
+                                stepAnsList.add(false);
+                            }
+                            for (int i = 0; i < position; i++) {
+                                stepAnsList.add(i, quiz.getAnswers().get(i));
+                            }
+                            stepView.go(position, true, true);
+                            offlineBattleSaving = quiz;
                         }
-                        question_number = Objects.requireNonNull(quiz).getQuestionList().size();
-                        try {
-                            playAnim(question, 60, list.get(position).getQuestion());
-                        } catch (Exception vhjkj) {
-                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                        try {
-                            stepView.getState()
-                                    .animationType(StepView.ANIMATION_ALL)
-                                    .nextStepCircleEnabled(true)
-                                    .stepsNumber(list.size())
-                                    .commit();
-                        } catch (Exception xcz) {
-                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                        answers = quiz.getAnswers();
-                        for (int i = 0; i < question_number; i++) {
-                            stepAnsList.add(false);
-                        }
-                        for (int i = 0; i < position; i++) {
-                            stepAnsList.add(i, quiz.getAnswers().get(i));
-                        }
-                        stepView.go(position, true, true);
-                        offlineBattleSaving = quiz;
-                    }
+                            });
+
                 } catch (Exception fd) {
                     Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                     finish();
@@ -423,7 +415,7 @@ public class QuizBattle extends AppCompatActivity {
                                     stepAnsList.add(false);
                                 }
                                 stepView.go(position, true, true);
-                                quiz = new Quiz(topic,
+                                quiz = new Quiz(type,
                                         difficulty,
                                         answers,
                                         System.currentTimeMillis(),
@@ -462,7 +454,10 @@ public class QuizBattle extends AppCompatActivity {
             next.setEnabled(false);
             elableOption(true);
             if (which >= list.size()) {
+                mDialog.setMessage("Finishing up...");
                 mDialog.show();
+                startActivity(new Intent(getApplicationContext(), ResultActivity.class).putExtra("id", quiz.getBattleId()));
+
             } else {
                 playAnim(question, 60, list.get(which).getQuestion());
             }
@@ -476,6 +471,7 @@ public class QuizBattle extends AppCompatActivity {
     private void showResult() {
         AsyncTask.execute(() -> {
             answers.add(position, false);
+            quiz.completed++;
             quiz.setAnswers(answers);
             quiz.setCompleted(list.size());
             battleViewModel.insert(quiz);
@@ -533,7 +529,7 @@ public class QuizBattle extends AppCompatActivity {
                     if (seconds < 15) {
                         timeLeftInMillis = 0;
                         countDownTimer.cancel();
-                        //updateCountDownText();
+                        updateCountDownText();
                         stepAnsList.add(position, false);
                         showResult();
                     } else {
