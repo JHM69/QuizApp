@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.jhm69.quizapp_hometask.activity.SelectCategory;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.rcgv);
 
         findViewById(R.id.button).setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), SelectCategory.class));
+        });
+        findViewById(R.id.imageView2).setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), SelectCategory.class));
         });
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
