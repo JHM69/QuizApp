@@ -48,7 +48,7 @@ public class SelectCategory extends AppCompatActivity {
                 startActivity(
                         new Intent(getApplicationContext(),
                                 QuizBattle.class)
-                                .putExtra("category", category.toString())
+                                .putExtra("category", category.toString().replaceAll(",$", ""))
                                 .putExtra("difficulty", difficulty));
             }
 

@@ -257,17 +257,15 @@ public class StepView extends View {
                 if (Math.abs(step - currentStep) > 1) {
                     endAnimation();
                     currentStep = step;
-                    invalidate();
                 } else {
                     nextAnimatedStep = step;
                     state = ANIMATE_STEP_TRANSITION;
                     animate(step);
-                    invalidate();
                 }
             } else {
                 currentStep = step;
-                invalidate();
             }
+            invalidate();
         }
     }
 

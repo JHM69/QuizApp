@@ -10,6 +10,7 @@ import androidx.room.TypeConverters;
 
 import com.jhm69.quizapp_hometask.utils.BooleanLiatConverter;
 import com.jhm69.quizapp_hometask.utils.DataTypeConverterQuestion;
+import com.jhm69.quizapp_hometask.utils.IntLiatConverter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,6 +25,10 @@ public class Quiz implements Serializable {
     public String difficulty;
     @TypeConverters(BooleanLiatConverter.class)
     public ArrayList<Boolean> answers;
+
+    @TypeConverters(IntLiatConverter.class)
+    public ArrayList<Integer> answerList;
+
     long timestamp;
     @TypeConverters(DataTypeConverterQuestion.class)
     List<Question> questionList;
@@ -50,6 +55,10 @@ public class Quiz implements Serializable {
     }
 
     public String getTopic() {
+        topic = topic.replaceAll("_", " ");
+        if(topic.length()> 25){
+            return topic.substring(0, 25).replaceAll(",$", "")+"...";
+        }
         return topic;
     }
 
@@ -116,5 +125,13 @@ public class Quiz implements Serializable {
 
     public boolean isCompleted() {
         return completed==questionList.size();
+    }
+
+    public ArrayList<Integer> getAnswerList() {
+        return answerList;
+    }
+
+    public void setAnswerList(ArrayList<Integer> answerList) {
+        this.answerList = answerList;
     }
 }

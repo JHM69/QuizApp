@@ -46,6 +46,7 @@
                 app:sv_selectedCircleColor="@color/colorPrimary"
                 app:sv_selectedStepNumberColor="@color/white"
                 app:sv_stepLineWidth="3dp"
+                app:sv_stepPadding="1dp"
                 app:sv_stepNumberTextSize="13sp"
                 app:sv_typeface="@font/regular"
                 tools:ignore="MissingConstraints" />
@@ -203,6 +204,22 @@
 
             </LinearLayout>
 
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:indeterminate="false"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:rotation="180"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/next"
+                app:layout_constraintStart_toStartOf="@+id/next"
+                app:layout_constraintTop_toTopOf="@+id/next" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/next"
                 android:layout_width="0dp"
@@ -217,7 +234,7 @@
                 android:text="Next"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:cornerRadius="10dp"
+                app:cornerRadius="6dp"
                 app:icon="@drawable/ic_baseline_navigate_next_24"
                 app:iconGravity="textStart"
                 app:layout_constraintBottom_toBottomOf="parent"
