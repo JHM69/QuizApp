@@ -1,18 +1,15 @@
 package com.jhm69.quizapp_hometask.activity;
 
 
-import static android.content.res.ColorStateList.*;
 import static com.jhm69.quizapp_hometask.view.StepView.stepAnsList;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -35,24 +32,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.jhm69.quizapp_hometask.R;
 import com.jhm69.quizapp_hometask.model.Question;
 import com.jhm69.quizapp_hometask.model.Quiz;
+import com.jhm69.quizapp_hometask.repository.QuizResultRepository;
 import com.jhm69.quizapp_hometask.retrofit.ApiUtils;
 import com.jhm69.quizapp_hometask.retrofit.QuestionService;
+import com.jhm69.quizapp_hometask.view.CustomProgressDialogue;
 import com.jhm69.quizapp_hometask.view.StepView;
 import com.jhm69.quizapp_hometask.viewmodel.BattleViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
-import retrofit2.Call;
-import retrofit2.Response;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 
 public class QuizBattle extends AppCompatActivity {
@@ -73,10 +71,11 @@ public class QuizBattle extends AppCompatActivity {
     long timeLeftInMillis = 0;
     private LinearLayout question;
     private BattleViewModel battleViewModel;
+    private QuizResultRepository quizResultRepository;
     private List<Question> list;
     private int score;
     private StepView stepView;
-    private ProgressDialog mDialog;
+    private CustomProgressDialogue mDialog;
     private CountDownTimer countDownTimer;
     private Quiz quiz;
     private TextView textViewCountDown;
@@ -89,24 +88,7 @@ public class QuizBattle extends AppCompatActivity {
         getWindow().setEnterTransition(new Explode());
         getWindow().setExitTransition(new Explode());
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedPreferences = getSharedPreferences("Theme", Context.MODE_PRIVATE);
-        String themeName = sharedPreferences.getString("ThemeName", "Default");
-        if (themeName.equalsIgnoreCase("TealTheme")) {
-            setTheme(R.style.TealTheme);
-        } else if (themeName.equalsIgnoreCase("VioleteTheme")) {
-            setTheme(R.style.VioleteTheme);
-        } else if (themeName.equalsIgnoreCase("PinkTheme")) {
-            setTheme(R.style.PinkTheme);
-        } else if (themeName.equalsIgnoreCase("DelRio")) {
-            setTheme(R.style.DelRio);
-        } else if (themeName.equalsIgnoreCase("DarkTheme")) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            setTheme(R.style.Dark);
-        } else if (themeName.equalsIgnoreCase("Lynch")) {
-            setTheme(R.style.Lynch);
-        } else {
-            setTheme(R.style.AppTheme);
-        }
+
         setContentView(R.layout.activity_quiz_battle);
         stepAnsList = new ArrayList<>();
         offlideID = getIntent().getStringExtra("id");
@@ -124,9 +106,8 @@ public class QuizBattle extends AppCompatActivity {
         next = findViewById(R.id.next);
         textViewCountDown = findViewById(R.id.textViewCountDown);
         optionsContainer = findViewById(R.id.contaner);
-        mDialog = new ProgressDialog(this);
-        mDialog.setMessage("Please wait..");
-        mDialog.setIndeterminate(true);
+
+        mDialog =new CustomProgressDialogue(this);
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.setCancelable(false);
 
@@ -135,7 +116,7 @@ public class QuizBattle extends AppCompatActivity {
 
 
         battleViewModel = ViewModelProviders.of(this).get(BattleViewModel.class);
-        if (list.size() != 4) {
+        if (list.size() < 5) {
             loadQuestionData();
         } else {
             try {
@@ -180,6 +161,8 @@ public class QuizBattle extends AppCompatActivity {
                     quiz.setTimestamp(System.currentTimeMillis());
                     battleViewModel.insert(quiz);
                 });
+                countDownTimer.cancel();
+                progressBar.setVisibility(View.GONE);
             });
         }
         next.setOnClickListener(v -> {
@@ -313,47 +296,45 @@ public class QuizBattle extends AppCompatActivity {
             if (offlideID != null) {
                 try {
                     Toast.makeText(this, "Resuming battle...", Toast.LENGTH_SHORT).show();
-
-                    battleViewModel.getBattle(offlideID).observe(this, q -> {
-                        quiz = q;
-                        mDialog.dismiss();
-                        if (!quiz.isCompleted()) {
-                            position = quiz.getCompleted();
-                            score = quiz.getScore();
-                            question_number = list.size();
-                            thisScore.setText(String.valueOf(score));
-                            list = Objects.requireNonNull(quiz).getQuestionList();
-                            for(int i=0; i<list.size(); i++){
-                                list.get(i).setUpOptions();
-                            }
-                            question_number = Objects.requireNonNull(quiz).getQuestionList().size();
-                            try {
-                                playAnim(question, list.get(position).getQuestion());
-                            } catch (Exception vhjkj) {
-                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-                            try {
-                                stepView.getState()
-                                        .animationType(StepView.ANIMATION_ALL)
-                                        .nextStepCircleEnabled(true)
-                                        .stepsNumber(list.size())
-                                        .commit();
-                            } catch (Exception xcz) {
-                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-                            answers = quiz.getAnswers();
-                            answerList = quiz.getAnswerList();
-                            for (int i = 0; i < question_number; i++) {
-                                stepAnsList.add(false);
-                            }
-                            for (int i = 0; i < position; i++) {
-                                stepAnsList.set(i, quiz.getAnswers().get(i));
-                            }
-                            stepView.go(position, true, true);
+                    quizResultRepository = new QuizResultRepository(getApplication());
+                    quiz = quizResultRepository.getDeadBattleOffline(offlideID);
+                    mDialog.dismiss();
+                    if (!quiz.isCompleted()) {
+                        position = quiz.getCompleted();
+                        score = quiz.getScore();
+                        question_number = list.size();
+                        thisScore.setText(String.valueOf(score));
+                        list = Objects.requireNonNull(quiz).getQuestionList();
+                        for(int i=0; i<list.size(); i++){
+                            list.get(i).setUpOptions();
                         }
-                    });
+                        question_number = Objects.requireNonNull(quiz).getQuestionList().size();
+                        try {
+                            playAnim(question, list.get(position).getQuestion());
+                        } catch (Exception vhjkj) {
+                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        try {
+                            stepView.getState()
+                                    .animationType(StepView.ANIMATION_ALL)
+                                    .nextStepCircleEnabled(true)
+                                    .stepsNumber(list.size())
+                                    .commit();
+                        } catch (Exception xcz) {
+                            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        answers = quiz.getAnswers();
+                        answerList = quiz.getAnswerList();
+                        for (int i = 0; i < question_number; i++) {
+                            stepAnsList.add(false);
+                        }
+                        for (int i = 0; i < position; i++) {
+                            stepAnsList.set(i, quiz.getAnswers().get(i));
+                        }
+                        stepView.go(position, true, true);
+                    }
                 } catch (Exception fd) {
                     Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                     finish();
@@ -417,7 +398,7 @@ public class QuizBattle extends AppCompatActivity {
                         public void onFailure(@NonNull Call call, @NonNull Throwable t) {
                             mDialog.dismiss();
                             Log.d("Exep", String.valueOf(t.getCause()));
-                            Toast.makeText(getApplicationContext(), "Failed, try again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "NO Network Connection, try again later", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     });
@@ -435,11 +416,13 @@ public class QuizBattle extends AppCompatActivity {
 
     private void goToNext(int which) {
         try {
+            progressBar.setVisibility(View.VISIBLE);
             stepView.go(which, true, answers.get(which - 1));
             next.setEnabled(false);
             elableOption(true);
-            if (which >= list.size()) {
-                mDialog.setMessage("Finishing up...");
+            if (which == list.size()-1) {
+                next.setText(R.string.submit);
+            }if (which >= list.size()) {
                 mDialog.show();
                 startActivity(new Intent(getApplicationContext(), ResultActivity.class).putExtra("id", quiz.getBattleId()));
                 finish();
@@ -463,13 +446,6 @@ public class QuizBattle extends AppCompatActivity {
         });
     }
 
-    private Drawable getDrawableWithRadius() {
-        int[] colors = {Color.parseColor("#8342ED"), Color.parseColor("#5570A0")};
-        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors);
-        gradientDrawable.setCornerRadii(new float[]{20, 20, 20, 20, 20, 20, 20, 20});
-        return gradientDrawable;
-    }
-
 
     public void onPause() {
         super.onPause();
@@ -489,27 +465,12 @@ public class QuizBattle extends AppCompatActivity {
         super.onDestroy();
     }
 
-
-    private int getScoreCount(List<Boolean> scoreList) {
-        int score = 0;
-        for (int i = 0; i < scoreList.size(); i++) {
-            if (scoreList.get(i)) {
-                score++;
-            }
-        }
-        return score;
-    }
-
-
     @Override
     public void onBackPressed() {
-        new MaterialDialog.Builder(this)
-                .title("Quite?")
-                .content("Are you sure want to quite and go back, if question time is less than 15s, this question will be count as wrong")
-                .positiveText("Yes")
-                .canceledOnTouchOutside(false)
-                .cancelable(false)
-                .onPositive((dialog, which) -> {
+        new AlertDialog.Builder(this)
+                .setTitle("Quite?")
+                .setMessage("Are you sure want to quite and go back, if question time is less than 15s, this question will be count as wrong")
+                .setPositiveButton("Yes", (dialog, which) -> {
                     int seconds = (int) (timeLeftInMillis / 1000) % 60;
                     if (seconds < 15) {
                         timeLeftInMillis = 0;
@@ -522,7 +483,8 @@ public class QuizBattle extends AppCompatActivity {
                     }
                     finish();
                 })
-                .negativeText("No")
+                .setCancelable(false)
+                .setNegativeButton("No", null)
                 .show();
     }
 }

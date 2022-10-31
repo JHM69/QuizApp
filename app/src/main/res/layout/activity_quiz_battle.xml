@@ -115,7 +115,7 @@
                     android:gravity="left"
                     android:padding="5dp"
                     android:paddingStart="20dp"
-                    tools:ignore="RtlSymmetry">
+                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
                         android:forceHasOverlappingRendering="true"
                         android:textColor="?android:textColorPrimary"
                         android:textSize="16sp"
-                        tools:ignore="ObsoleteLayoutParam" />
+                        tools:ignore="ObsoleteLayoutParam,UnusedAttribute" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -139,7 +139,7 @@
                     android:gravity="left"
                     android:padding="5dp"
                     android:paddingStart="20dp"
-                    tools:ignore="RtlSymmetry">
+                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -151,7 +151,7 @@
                         android:forceHasOverlappingRendering="true"
                         android:textColor="?android:textColorPrimary"
                         android:textSize="16sp"
-                        tools:ignore="ObsoleteLayoutParam" />
+                        tools:ignore="ObsoleteLayoutParam,UnusedAttribute" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -163,7 +163,7 @@
                     android:gravity="left"
                     android:padding="5dp"
                     android:paddingStart="20dp"
-                    tools:ignore="RtlSymmetry">
+                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -175,7 +175,7 @@
                         android:forceHasOverlappingRendering="true"
                         android:textColor="?android:textColorPrimary"
                         android:textSize="16sp"
-                        tools:ignore="ObsoleteLayoutParam" />
+                        tools:ignore="ObsoleteLayoutParam,UnusedAttribute" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -187,7 +187,7 @@
                     android:gravity="left"
                     android:padding="5dp"
                     android:paddingStart="20dp"
-                    tools:ignore="RtlSymmetry">
+                    tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -199,7 +199,7 @@
                         android:forceHasOverlappingRendering="true"
                         android:textColor="?android:textColorPrimary"
                         android:textSize="16sp"
-                        tools:ignore="ObsoleteLayoutParam" />
+                        tools:ignore="ObsoleteLayoutParam,UnusedAttribute" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -227,7 +227,7 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="6dp"
-                android:alpha="0.9"
+                android:alpha="0.8"
                 android:backgroundTint="?colorPrimary"
                 android:enabled="false"
                 android:soundEffectsEnabled="true"
@@ -265,7 +265,8 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/topic" />
+                app:layout_constraintTop_toBottomOf="@+id/topic"
+                tools:ignore="HardcodedText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

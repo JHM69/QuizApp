@@ -22,6 +22,9 @@ public interface DaoAccess {
     @Query("SELECT * FROM Quiz WHERE battleId =:taskId")
     LiveData<Quiz> getResult(String taskId);
 
+    @Query("SELECT * FROM Quiz WHERE battleId =:taskId")
+    Quiz getDeadResult(String taskId);
+
 
     @Query("SELECT * FROM Quiz WHERE battleId =:taskId")
     Quiz getBattleOffline(String taskId);

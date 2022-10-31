@@ -1,17 +1,13 @@
 package com.jhm69.quizapp_hometask.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.jhm69.quizapp_hometask.R;
-
-import java.util.HashMap;
 
 public class SelectCategory extends AppCompatActivity {
     StringBuilder category = new StringBuilder();
@@ -53,6 +49,7 @@ public class SelectCategory extends AppCompatActivity {
             }
 
         });
+
 
     }
 }

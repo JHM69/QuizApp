@@ -27,7 +27,7 @@
         android:layout_marginEnd="24dp"
         android:drawableLeft="@drawable/ic_round_offline_bolt_24"
         android:fontFamily="@font/regular"
-        android:text="Play Quiz"
+        android:text="@string/play_quiz"
         android:textSize="15sp"
         android:textStyle="bold"
         app:cornerRadius="30dp"
@@ -35,7 +35,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcgv"
@@ -56,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Previous Quiz"
+        android:text="@string/previous_quiz"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,12 +68,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="HomeTask by Jahangir Hossain"
+        android:text="@string/hometask_by_jahangir_hossain"
         android:textColor="@color/colorAccent"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SmallSp" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -85,6 +87,7 @@
         app:layout_constraintEnd_toEndOf="@+id/button"
         app:layout_constraintStart_toStartOf="@+id/button"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:srcCompat="@drawable/ic_logo" />
+        app:srcCompat="@drawable/ic_logo"
+        tools:ignore="ContentDescription" />
 </androidx.constraintlayout.motion.widget.MotionLayout>
 
