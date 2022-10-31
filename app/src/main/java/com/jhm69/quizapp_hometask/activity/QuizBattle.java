@@ -135,7 +135,15 @@ public class QuizBattle extends AppCompatActivity {
 
 
         battleViewModel = ViewModelProviders.of(this).get(BattleViewModel.class);
-        loadQuestionData();
+        if (list.size() != 4) {
+            loadQuestionData();
+        } else {
+            try {
+                playAnim(question, list.get(position).getQuestion());
+            } catch (ClassCastException svs) {
+                Toast.makeText(this, "error", Toast.LENGTH_SHORT).show();
+            }
+        }
         for (int i = 0; i < 4; i++) {
             final int selected = i;
             optionsContainer.getChildAt(i).setOnClickListener(v -> {
