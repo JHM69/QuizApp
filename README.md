@@ -5,7 +5,9 @@ Quiz Q is a user-friendly mobile app that offers an engaging and challenging qui
 1. Questions are randomly selected from [The Trivia Api](https://the-trivia-api.com/docs/#getQuestions)
 2. Used ROOM Database for Storing Questions and User result offline
 3. Used Live Data and ViewModel
- 
+
+Test the App: [Download Quiz Q](https://github.com/JHM69/QuizApp/raw/master/QuizApp%20by%20Jahangir%20Hossain.apk)
+
 # Structure
 ```
 main
